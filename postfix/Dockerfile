@@ -1,5 +1,5 @@
 #
-FROM ubuntu:16.04
+FROM debian:jessie
 
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 

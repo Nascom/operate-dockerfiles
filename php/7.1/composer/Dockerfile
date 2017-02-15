@@ -1,5 +1,5 @@
 # Custom PHP composer container
-FROM ubuntu:16.04
+FROM debian:jessie
 
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 
@@ -12,6 +12,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         git \
         zip \
         unzip \
+        apt-transport-https \
+        ca-certificates \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -49,9 +51,8 @@ RUN locale-gen cs_CZ cs_CZ.UTF-8 \
     && locale-gen zh_CN zh_CN.UTF-8
 
 # Add all PHP modules we need & cleanup
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common \
-    && LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
+RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
+    && echo "deb https://packages.sury.org/php/ jessie main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         php7.1-bcmath \

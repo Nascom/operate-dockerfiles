@@ -1,12 +1,15 @@
 # Custom PHP-CLI & FPM container for old legacy projects
 #
 # NEVER use this for new projects!!
-FROM ubuntu:12.04
+FROM debian:squeeze
 
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 
 # Install basic utilities
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+RUN echo "deb http://archive.debian.org/debian squeeze main" > /etc/apt/sources.list \
+    && echo "deb http://archive.debian.org/debian squeeze-lts main" >> /etc/apt/sources.list \
+    && echo "Acquire::Check-Valid-Until false;" > /etc/apt/apt.conf \
+    && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         curl \
         wget \
@@ -15,6 +18,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         zip \
         unzip \
         ssmtp \
+        apt-transport-https \
+        ca-certificates \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -53,9 +58,11 @@ RUN usermod -u 3000 www-data && \
     groupmod -g 3000 www-data
 
 # Add all PHP modules we need & cleanup
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+RUN echo "deb http://packages.dotdeb.org squeeze all" >> /etc/apt/sources.list.d/dotdeb.org.list \
+    && echo "deb-src http://packages.dotdeb.org squeeze all" >> /etc/apt/sources.list.d/dotdeb.org.list \
+    && wget -O- http://www.dotdeb.org/dotdeb.gpg | apt-key add - \
+    && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-        build-essential \
         php-apc \
         php5-cli \
         php5-curl \
@@ -71,8 +78,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         php-pear \
         php-soap \
         php5-tidy \
-    && pecl install uploadprogress \
-    && apt-get remove -y --purge build-essential \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

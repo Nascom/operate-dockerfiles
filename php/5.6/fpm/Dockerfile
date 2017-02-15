@@ -1,7 +1,7 @@
 # Custom PHP-CLI & FPM container
 #
 # Should NOT be used for new projects unless it's required by the hosting provider
-FROM ubuntu:16.04
+FROM debian:jessie
 
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 
@@ -15,6 +15,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         zip \
         unzip \
         ssmtp \
+        apt-transport-https \
+        ca-certificates \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -56,9 +58,8 @@ RUN usermod -u 3000 www-data && \
     groupmod -g 3000 www-data
 
 # Add all PHP modules we need & cleanup
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common \
-    && LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
+RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
+    && echo "deb https://packages.sury.org/php/ jessie main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         php5.6-bcmath \
@@ -81,7 +82,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         php5.6-xml \
         php5.6-xmlrpc \
         php5.6-zip \
-        php-uploadprogress \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
