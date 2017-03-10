@@ -60,6 +60,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && echo "deb https://packages.sury.org/php/ jessie main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        php7.0-apcu \
         php7.0-bcmath \
         php7.0-bz2 \
         php7.0-cli \
