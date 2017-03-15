@@ -89,9 +89,9 @@ ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH
 
 COPY php.ini    /etc/php/7.0/cli/conf.d/
+COPY ./run.sh /run.sh
 
 VOLUME ["/app"]
 WORKDIR /app
 
-CMD ["-"]
-ENTRYPOINT ["composer", "--ansi"]
+ENTRYPOINT ["/run.sh"]
