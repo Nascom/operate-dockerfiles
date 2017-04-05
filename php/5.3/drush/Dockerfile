@@ -1,5 +1,5 @@
-# Custom PHP 7.0 drush container
-FROM nascom/php:7.0-composer
+# Custom PHP drush container
+FROM nascom/php:5.3-composer
 
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 
@@ -10,7 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install drush
-RUN composer global require drush/drush:8.* --prefer-dist
+RUN composer global require drush/drush:7.* --prefer-dist
 
 ENV TINI_VERSION v0.14.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
