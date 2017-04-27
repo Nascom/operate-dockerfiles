@@ -81,3 +81,4 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
 
 COPY mail.ini   /etc/php/7.0/cli/conf.d/
 COPY php.ini    /etc/php/7.0/cli/conf.d/
+COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
