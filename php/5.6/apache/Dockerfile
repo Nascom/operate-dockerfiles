@@ -17,7 +17,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Enabale apache modules
+# Enable apache modules
 RUN a2enmod proxy \
     && a2enmod proxy_http \
     && a2enmod proxy_fcgi \
@@ -37,7 +37,8 @@ RUN a2enmod proxy \
     && a2enmod deflate \
     && a2enmod setenvif \
     && a2enmod vhost_alias \
-    && a2enmod ssl
+    && a2enmod ssl \
+    && a2enmod remoteip
 
 EXPOSE 80
 EXPOSE 443

@@ -35,7 +35,8 @@ RUN a2enmod proxy \
     && a2enmod deflate \
     && a2enmod setenvif \
     && a2enmod vhost_alias \
-    && a2enmod ssl
+    && a2enmod ssl \
+    && a2enmod remoteip
 
 EXPOSE 80
 EXPOSE 443
