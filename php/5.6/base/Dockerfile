@@ -76,9 +76,16 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php5.6-xml \
         php5.6-xmlrpc \
         php5.6-zip \
+        php5.6-dev \
+        php-pear \
+        libsodium-dev \
+    && pecl install libsodium \
+    && apt-get remove --purge php5.6-dev php-pear -y \
+    && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY libsodium.ini /etc/php/5.6/mods-available/libsodium.ini
 COPY mail.ini   /etc/php/5.6/cli/conf.d/
 COPY php.ini    /etc/php/5.6/cli/conf.d/
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf

@@ -76,9 +76,16 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.1-xml \
         php7.1-xmlrpc \
         php7.1-zip \
+        php7.1-dev \
+        php-pear \
+        libsodium-dev \
+    && pecl install libsodium \
+    && apt-get remove --purge php7.1-dev php-pear -y \
+    && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY libsodium.ini /etc/php/7.1/mods-available/libsodium.ini
 COPY mail.ini   /etc/php/7.1/cli/conf.d/
 COPY php.ini    /etc/php/7.1/cli/conf.d/
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf

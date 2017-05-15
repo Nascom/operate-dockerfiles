@@ -47,6 +47,9 @@ ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
 ENV SMTP_SERVER mail.nascom.be
 ENV ROOT_EMAIL admin@nascom.be
 
+# Enable libsodium
+RUN phpenmod libsodium
+
 COPY mail.ini       /etc/php/7.1/apache2/conf.d/
 COPY php.ini        /etc/php/7.1/apache2/conf.d/
 COPY run.sh         /run.sh
