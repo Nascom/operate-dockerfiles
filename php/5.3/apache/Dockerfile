@@ -44,8 +44,6 @@ EXPOSE 443
 
 ENV ENVIRONMENT dev
 ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
-ENV SMTP_SERVER mail.nascom.be
-ENV ROOT_EMAIL admin@nascom.be
 
 COPY mail.ini   /etc/php5/apache2/conf.d/
 COPY php.ini    /etc/php5/apache2/conf.d/

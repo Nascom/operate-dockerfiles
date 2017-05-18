@@ -76,6 +76,9 @@ RUN echo "deb http://packages.dotdeb.org squeeze all" >> /etc/apt/sources.list.d
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ENV SMTP_SERVER mail
+ENV ROOT_EMAIL admin@nascom.be
+
 COPY mail.ini   /etc/php5/cli/conf.d/
 COPY php.ini    /etc/php5/cli/conf.d/
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
