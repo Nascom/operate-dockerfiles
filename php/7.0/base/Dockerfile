@@ -85,7 +85,10 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY libsodium.ini /etc/php/7.0/mods-available/libsodium.ini
-COPY mail.ini   /etc/php/7.0/cli/conf.d/
-COPY php.ini    /etc/php/7.0/cli/conf.d/
-COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
+ENV SMTP_SERVER mail
+ENV ROOT_EMAIL admin@nascom.be
+
+COPY libsodium.ini  /etc/php/7.0/mods-available/libsodium.ini
+COPY mail.ini       /etc/php/7.0/cli/conf.d/
+COPY php.ini        /etc/php/7.0/cli/conf.d/
+COPY ssmtp.conf     /etc/ssmtp/ssmtp.conf

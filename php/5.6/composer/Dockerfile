@@ -13,7 +13,10 @@ RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
 ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH
 
+COPY run.sh /run.sh
+RUN chmod +x /run.sh
+
 ENV TINI_VERSION v0.14.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
-ENTRYPOINT ["/tini", "--", "composer"]
+ENTRYPOINT ["/tini", "--", "/run.sh"]

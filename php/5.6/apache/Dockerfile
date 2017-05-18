@@ -46,8 +46,6 @@ EXPOSE 443
 ENV DOCUMENT_ROOT /var/www/html
 ENV ENVIRONMENT dev
 ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
-ENV SMTP_SERVER mail.nascom.be
-ENV ROOT_EMAIL admin@nascom.be
 
 # Enable libsodium
 RUN phpenmod libsodium
