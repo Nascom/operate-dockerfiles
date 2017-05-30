@@ -92,3 +92,6 @@ COPY libsodium.ini /etc/php/5.6/mods-available/libsodium.ini
 COPY mail.ini   /etc/php/5.6/cli/conf.d/
 COPY php.ini    /etc/php/5.6/cli/conf.d/
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
+# Quickfix to make sure users can run container with custom config
+RUN  chmod a+w      /etc/ssmtp
+RUN  chmod a+w      /etc/ssmtp/ssmtp.conf

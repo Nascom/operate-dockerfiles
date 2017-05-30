@@ -82,3 +82,6 @@ ENV ROOT_EMAIL admin@nascom.be
 COPY mail.ini   /etc/php5/cli/conf.d/
 COPY php.ini    /etc/php5/cli/conf.d/
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
+# Quickfix to make sure users can run container with custom config
+RUN  chmod a+w  /etc/ssmtp
+RUN  chmod a+w  /etc/ssmtp/ssmtp.conf
