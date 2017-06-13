@@ -73,6 +73,7 @@ RUN echo "deb http://packages.dotdeb.org squeeze all" >> /etc/apt/sources.list.d
         php-pear \
         php-soap \
         php5-tidy \
+        wkhtmltopdf \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

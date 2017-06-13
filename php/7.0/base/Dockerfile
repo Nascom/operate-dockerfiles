@@ -79,6 +79,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.0-dev \
         php-pear \
         libsodium-dev \
+        wkhtmltopdf \
     && pecl install libsodium \
     && apt-get remove --purge php7.0-dev php-pear -y \
     && apt-get autoremove -y \
