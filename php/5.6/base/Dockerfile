@@ -16,6 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         ssmtp \
         apt-transport-https \
         ca-certificates \
+        xz-utils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -84,6 +85,18 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Add wkhtmltopdf
+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        libxrender1 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && wget -O /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
+    && tar -C /usr/local -xf /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
+    && ln -s /usr/local/wkhtmltox/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf \
+    && ln -s /usr/local/wkhtmltox/bin/wkhtmltoimage /usr/local/bin/wkhtmltoimage \
+    && rm -rf /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
 
 ENV SMTP_SERVER mail
 ENV ROOT_EMAIL admin@nascom.be
