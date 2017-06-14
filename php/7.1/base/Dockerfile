@@ -15,6 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         ssmtp \
         apt-transport-https \
         ca-certificates \
+        xz-utils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -51,6 +52,18 @@ RUN locale-gen cs_CZ cs_CZ.UTF-8 \
     && locale-gen uk_UA uk_UA.UTF-8 \
     && locale-gen zh_CN zh_CN.UTF-8
 
+# Add wkhtmltopdf
+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        libxrender1 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && wget -O /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
+    && tar -C /usr/local -xf /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
+    && ln -s /usr/local/wkhtmltox/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf \
+    && ln -s /usr/local/wkhtmltox/bin/wkhtmltoimage /usr/local/bin/wkhtmltoimage \
+    && rm -rf /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
+
 # Add all PHP modules we need & cleanup
 RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && echo "deb https://packages.sury.org/php/ jessie main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
@@ -79,7 +92,6 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.1-dev \
         php-pear \
         libsodium-dev \
-        wkhtmltopdf \
     && pecl install libsodium \
     && apt-get remove --purge php7.1-dev php-pear -y \
     && apt-get autoremove -y \
