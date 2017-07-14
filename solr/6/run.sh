@@ -7,9 +7,6 @@ trap 'echo "Shutting down..."; exit 0' SIGINT
 if [ ! -f $SOLR_HOME/solr.xml ]; then
     cp /config/solr.xml $SOLR_HOME
 fi
-#if [ ! -d $SOLR_HOME/core0 ]; then
-#    cp -R /config/core0 $SOLR_HOME/core0
-#fi
 
 if [ -z "$1" ]; then
   exec /usr/local/solr/bin/solr start -f
