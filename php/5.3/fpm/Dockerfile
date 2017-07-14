@@ -23,9 +23,9 @@ ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
 ENV SMTP_SERVER mail.nascom.be
 ENV ROOT_EMAIL admin@nascom.be
 
-COPY mail.ini   /etc/php5/fpm/conf.d/
-COPY php.ini    /etc/php5/fpm/conf.d/
-COPY www.conf   /etc/php5/fpm/pool.d/
-COPY run.sh     /run.sh
+COPY mail.ini       /etc/php5/fpm/conf.d/
+COPY php.ini        /etc/php5/fpm/conf.d/
+COPY php-fpm.conf   /etc/php5/fpm/php-fpm.conf
+COPY run.sh         /run.sh
 
 CMD ["/bin/bash", "/run.sh"]

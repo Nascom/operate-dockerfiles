@@ -4,6 +4,12 @@ FROM nascom/php:5.6-base
 
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 
+ENV APACHE_CONFDIR /etc/apache2
+ENV APACHE_ENVVARS $APACHE_CONFDIR/envvars
+ENV DOCUMENT_ROOT /var/www/html
+ENV ENVIRONMENT dev
+ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
+
 # Set www-data uid & gid
 RUN usermod -u 3000 www-data && \
     groupmod -g 3000 www-data
@@ -40,12 +46,15 @@ RUN a2enmod proxy \
     && a2enmod ssl \
     && a2enmod remoteip
 
+# logs should go to stdout / stderr
+RUN set -ex \
+	&& . "$APACHE_ENVVARS" \
+	&& ln -sfT /dev/stderr "$APACHE_LOG_DIR/error.log" \
+	&& ln -sfT /dev/stdout "$APACHE_LOG_DIR/access.log" \
+    && ln -sfT /dev/stdout "$APACHE_LOG_DIR/other_vhosts_access.log"
+
 EXPOSE 80
 EXPOSE 443
-
-ENV DOCUMENT_ROOT /var/www/html
-ENV ENVIRONMENT dev
-ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
 
 # Enable libsodium
 RUN phpenmod libsodium

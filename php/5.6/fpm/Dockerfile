@@ -25,9 +25,9 @@ ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
 # Enable libsodium
 RUN phpenmod libsodium
 
-COPY mail.ini   /etc/php/5.6/fpm/conf.d/
-COPY php.ini    /etc/php/5.6/fpm/conf.d/
-COPY www.conf   /etc/php/5.6/fpm/pool.d/
-COPY run.sh     /run.sh
+COPY mail.ini       /etc/php/5.6/fpm/conf.d/
+COPY php.ini        /etc/php/5.6/fpm/conf.d/
+COPY php-fpm.conf   /etc/php/5.6/fpm/php-fpm.conf
+COPY run.sh         /run.sh
 
 CMD ["/bin/bash", "/run.sh"]
