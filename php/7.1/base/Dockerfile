@@ -1,5 +1,5 @@
 # Custom PHP 7.1 base container (used as basis for all other PHP containers)
-FROM debian:jessie
+FROM debian:stretch
 
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 
@@ -16,6 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         apt-transport-https \
         ca-certificates \
         xz-utils \
+        gnupg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -66,7 +67,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
 
 # Add all PHP modules we need & cleanup
 RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
-    && echo "deb https://packages.sury.org/php/ jessie main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
+    && echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         php7.1-apcu \
