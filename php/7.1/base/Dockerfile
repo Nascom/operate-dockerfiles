@@ -114,25 +114,19 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.1-mbstring \
         php7.1-memcached \
         php7.1-mysql \
-        php7.1-mysqlnd \
+        php7.1-redis \
         php7.1-soap \
+        php7.1-sodium \
         php7.1-tidy \
         php7.1-xml \
         php7.1-xmlrpc \
         php7.1-zip \
-        php7.1-dev \
-        php-pear \
-        libsodium-dev \
-    && pecl install libsodium \
-    && apt-get remove --purge php7.1-dev php-pear -y \
-    && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV SMTP_SERVER mail
 ENV ROOT_EMAIL admin@nascom.be
 
-COPY libsodium.ini /etc/php/7.1/mods-available/libsodium.ini
 COPY mail.ini   /etc/php/7.1/cli/conf.d/
 COPY php.ini    /etc/php/7.1/cli/conf.d/
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
