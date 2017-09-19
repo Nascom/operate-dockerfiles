@@ -101,8 +101,8 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php5.6-mbstring \
         php5.6-memcached \
         php5.6-mysql \
-        php-pear \
         php5.6-soap \
+        php5.6-ssh2 \
         php5.6-tidy \
         php5.6-xml \
         php5.6-xmlrpc \

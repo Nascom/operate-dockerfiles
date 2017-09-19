@@ -105,6 +105,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.0-redis \
         php7.0-soap \
         php7.0-sodium \
+        php7.0-ssh2 \
         php7.0-tidy \
         php7.0-xml \
         php7.0-xmlrpc \
