@@ -4,10 +4,6 @@ FROM nascom/php:5.6-base
 
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 
-# Set www-data uid & gid
-RUN usermod -u 3000 www-data && \
-    groupmod -g 3000 www-data
-
 # Add all PHP modules we need & cleanup
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -19,6 +15,7 @@ EXPOSE 9000
 
 ENV ENVIRONMENT dev
 ENV PHP_FPM_USER www-data
+ENV PHP_FPM_UID 33
 ENV PHP_FPM_PORT 9000
 ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
 
