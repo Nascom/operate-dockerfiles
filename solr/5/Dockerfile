@@ -4,7 +4,7 @@ FROM debian:jessie
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV SOLR_VERSION 5.4.1
+ENV SOLR_VERSION 5.5.5
 ENV SOLR solr-$SOLR_VERSION
 ENV SOLR_USER solr
 ENV SOLR_HOME /var/solr

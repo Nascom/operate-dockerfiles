@@ -1,10 +1,10 @@
-# Custom SOLR 6.5.0 container
+# Custom SOLR 6.x container
 FROM debian:stretch
 
 MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV SOLR_VERSION 6.5.0
+ENV SOLR_VERSION 6.6.2
 ENV SOLR solr-$SOLR_VERSION
 ENV SOLR_USER solr
 ENV SOLR_HOME /var/solr
