@@ -2,7 +2,7 @@
 # NEVER use this for new projects!!
 FROM nascom/php:5.3-base
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 RUN usermod -u 3000 www-data && \
     groupmod -g 3000 www-data

@@ -1,7 +1,7 @@
 # Basic Varnish 4.1 container
 FROM debian:jessie
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \

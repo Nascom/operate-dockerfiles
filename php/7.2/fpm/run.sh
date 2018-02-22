@@ -5,7 +5,7 @@ variables=( "PHP_FPM_PORT" "PHP_ERROR_REPORTING" "ENVIRONMENT" )
 for var in "${variables[@]}"
 do
    :
-   sed -i "s|%$var%|${!var}|g" /etc/php5/fpm/php-fpm.conf
+   sed -i "s|%$var%|${!var}|g" /etc/php/7.2/fpm/php-fpm.conf
 done
 sed -i "s|%SMTP_SERVER%|$SMTP_SERVER|g" /etc/ssmtp/ssmtp.conf
 sed -i "s|%ROOT_EMAIL%|$ROOT_EMAIL|g" /etc/ssmtp/ssmtp.conf

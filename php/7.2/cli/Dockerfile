@@ -1,7 +1,7 @@
 # Custom PHP 7.2 cli container *EXPERIMENTAL : DO NOT USE IN PRODUCTION!*
 FROM nascom/php:7.2-base
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 VOLUME ["/app"]
 WORKDIR /app

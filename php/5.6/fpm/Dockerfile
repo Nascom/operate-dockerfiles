@@ -2,7 +2,7 @@
 # Should NOT be used for new projects unless it's required by the hosting provider
 FROM nascom/php:5.6-base
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Add all PHP modules we need & cleanup
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

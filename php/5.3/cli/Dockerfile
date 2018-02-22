@@ -2,7 +2,7 @@
 # NEVER use this for new projects!!
 FROM nascom/php:5.3-base
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 VOLUME ["/app"]
 WORKDIR /app

@@ -1,7 +1,7 @@
 # Basic node container with Ctrl-C support
 FROM node:6
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Hack needed to make sure git clone works?
 RUN git config --system user.name Docker && git config --system user.email docker@localhost
@@ -11,6 +11,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         ruby-sass \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN npm install -g yarn
 
 ENV TINI_VERSION v0.14.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini

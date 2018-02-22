@@ -1,7 +1,7 @@
 # Custom PHP drush container
 FROM nascom/php:5.6-composer
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Install Mysql client tools
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

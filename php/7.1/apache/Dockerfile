@@ -1,7 +1,7 @@
 # Custom PHP 7.1 apache container
 FROM nascom/php:7.1-base
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Set www-data uid & gid
 RUN usermod -u 3000 www-data && \

@@ -1,7 +1,7 @@
 # Custom PHP 7.2 base container *EXPERIMENTAL : DO NOT USE IN PRODUCTION!*
 FROM debian:stretch
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Install most recent version of basic utilities
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

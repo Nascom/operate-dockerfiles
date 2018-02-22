@@ -1,7 +1,7 @@
 # Basic node container with Ctrl-C support
 FROM node:4
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Hack needed to make sure git clone works?
 RUN git config --system user.name Docker && git config --system user.email docker@localhost

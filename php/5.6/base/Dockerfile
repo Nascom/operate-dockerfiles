@@ -2,7 +2,7 @@
 # Should NOT be used for new projects unless it's required by the hosting provider
 FROM debian:jessie
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Install most recent version of basic utilities
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

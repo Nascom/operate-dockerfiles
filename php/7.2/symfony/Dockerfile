@@ -1,7 +1,7 @@
 # Custom PHP 7.2 symfony container
 FROM nascom/php:7.2-composer
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Install Mysql client tools
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

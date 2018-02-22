@@ -1,7 +1,7 @@
 # Custom PHP FPM container
 FROM nascom/php:5.3-base
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Add fpm module
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

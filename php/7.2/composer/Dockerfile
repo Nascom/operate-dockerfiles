@@ -1,7 +1,7 @@
 # Custom PHP 7.2 composer container *EXPERIMENTAL : DO NOT USE IN PRODUCTION!*
 FROM nascom/php:7.2-cli
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Hack needed to make sure git clone works?
 RUN git config --system user.name Docker && git config --system user.email docker@localhost

@@ -1,7 +1,7 @@
 # Custom SOLR 4.x container
 FROM debian:jessie
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV SOLR_VERSION 4.10.4

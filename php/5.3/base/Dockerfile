@@ -2,7 +2,7 @@
 # NEVER use this for new projects!!
 FROM debian:squeeze
 
-MAINTAINER Wim Vandersmissen <wim.vandersmissen@nascom.be>
+LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Install basic utilities
 RUN echo "deb http://archive.debian.org/debian squeeze main" > /etc/apt/sources.list \
