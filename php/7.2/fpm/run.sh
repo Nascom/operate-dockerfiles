@@ -1,6 +1,6 @@
 #!/bin/bash
 
-variables=( "PHP_FPM_PORT" "PHP_ERROR_REPORTING" "ENVIRONMENT" )
+variables=( "PHP_FPM_PORT" "PHP_ERROR_REPORTING" "PHP_FPM_MAX_CHILDREN" "ENVIRONMENT" )
 
 for var in "${variables[@]}"
 do
