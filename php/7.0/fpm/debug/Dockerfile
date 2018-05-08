@@ -10,7 +10,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# xdebug configuration
-RUN echo 'xdebug.remote_port=9000' >> /etc/php/7.0/cli/conf.d/20-xdebug.ini
-RUN echo 'xdebug.remote_enable=1' >> /etc/php/7.0/cli/conf.d/20-xdebug.ini
-RUN echo 'xdebug.remote_connect_back=1' >> /etc/php/7.0/cli/conf.d/20-xdebug.ini
+ENV XDEBUG_PORT 9000
+
+COPY xdebug.ini     /etc/php/7.0/cli/conf.d/20-xdebug.ini
+COPY xdebug.ini     /etc/php/7.0/fpm/conf.d/20-xdebug.ini
+COPY run.sh         /run.sh
+
+CMD ["/bin/bash", "/run.sh"]

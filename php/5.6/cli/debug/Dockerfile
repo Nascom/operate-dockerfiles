@@ -9,3 +9,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         php-xdebug \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ENV XDEBUG_PORT 9000
+
+COPY xdebug.ini     /etc/php/5.6/cli/conf.d/20-xdebug.ini
+COPY run.sh         /run.sh
+
+CMD ["/bin/bash", "/run.sh"]
