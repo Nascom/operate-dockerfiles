@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+sed -i "s|%SMTP_SERVER%|$SMTP_SERVER|g" /etc/ssmtp/ssmtp.conf
+sed -i "s|%ROOT_EMAIL%|$ROOT_EMAIL|g" /etc/ssmtp/ssmtp.conf
+
+if [ ! -z $PHP_FPM_GID ]; then
+    groupmod -g $PHP_FPM_GID -o www-data
+fi
+
+if [ ! -z $PHP_FPM_UID ]; then
+    usermod -u $PHP_FPM_UID -o www-data
+fi
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- php-fpm "$@"
+fi
+exec "$@"
