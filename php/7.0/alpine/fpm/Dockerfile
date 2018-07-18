@@ -24,10 +24,10 @@ RUN docker-php-ext-install -j$(nproc) exif
 RUN docker-php-ext-install -j$(nproc) iconv
 
 # imagick extension
-RUN apk add --no-cache autoconf make g++ imagemagick imagemagick-dev \
+RUN apk add --no-cache autoconf make g++ imagemagick6 imagemagick6-dev \
     && pecl install -f imagick \
     && docker-php-ext-enable imagick \
-    && apk del --no-cache autoconf make g++ imagemagick-dev \
+    && apk del --no-cache autoconf make g++ imagemagick6-dev \
     && rm -rf /tmp/*
 
 # mysqli (legacy)
@@ -148,7 +148,6 @@ COPY php.ini /usr/local/etc/php/conf.d/php.ini
 
 COPY docker-php-entrypoint /usr/local/bin/
 
-ENV SYMFONY_ENV prod
 ENV PHP_FPM_UID 33
 ENV PHP_FPM_GID 33
 ENV ROOT_EMAIL root@domain.tld

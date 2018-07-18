@@ -148,7 +148,6 @@ COPY php.ini /usr/local/etc/php/conf.d/php.ini
 
 COPY docker-php-entrypoint /usr/local/bin/
 
-ENV SYMFONY_ENV prod
 ENV PHP_FPM_UID 33
 ENV PHP_FPM_GID 33
 ENV ROOT_EMAIL root@domain.tld
