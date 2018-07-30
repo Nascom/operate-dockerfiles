@@ -1,5 +1,5 @@
-# Custom PHP 7.0 apache container
-FROM nascom/php:7.0-base
+# Custom PHP 7.2 apache container (DEPRECATED - use fpm instead)
+FROM nascom/php:7.2-base
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -11,7 +11,7 @@ RUN usermod -u 3000 www-data && \
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         apache2 \
-        libapache2-mod-php7.0 \
+        libapache2-mod-php7.2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -45,11 +45,8 @@ ENV DOCUMENT_ROOT /var/www/html
 ENV ENVIRONMENT dev
 ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
 
-# Enable libsodium
-RUN phpenmod libsodium
-
-COPY mail.ini       /etc/php/7.0/apache2/conf.d/
-COPY php.ini        /etc/php/7.0/apache2/conf.d/
+COPY mail.ini       /etc/php/7.2/apache2/conf.d/
+COPY php.ini        /etc/php/7.2/apache2/conf.d/
 COPY run.sh         /run.sh
 
 CMD ["/bin/bash", "/run.sh"]

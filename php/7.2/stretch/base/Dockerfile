@@ -1,4 +1,4 @@
-# Custom PHP 7.2 base container *EXPERIMENTAL : DO NOT USE IN PRODUCTION!*
+# Custom PHP 7.2 base container
 FROM debian:stretch
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"

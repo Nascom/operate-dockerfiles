@@ -1,4 +1,4 @@
-# Custom PHP 7.2 FPM container *EXPERIMENTAL : DO NOT USE IN PRODUCTION!*
+# Custom PHP 7.2 FPM container
 FROM nascom/php:7.2-base
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"

@@ -1,4 +1,4 @@
-# Custom PHP 7.2 composer container *EXPERIMENTAL : DO NOT USE IN PRODUCTION!*
+# Custom PHP 7.2 composer container
 FROM nascom/php:7.2-cli
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"

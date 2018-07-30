@@ -1,4 +1,4 @@
-# Custom PHP 7.2 drush container *EXPERIMENTAL : DO NOT USE IN PRODUCTION!*
+# Custom PHP 7.2 drush container
 FROM nascom/php:7.2-composer
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"

@@ -1,4 +1,4 @@
-# Custom PHP 7.2 cli container with xdebug (php:7.2-cli-debug)
+# Custom PHP 7.2 cli container with xdebug
 FROM nascom/php:7.2-cli
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
