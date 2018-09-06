@@ -1,0 +1,10 @@
+#!/bin/sh
+set -xe
+
+PARAMS="-M 0 -T -N -oStrictHostKeyChecking=no -oServerAliveInterval=180"
+
+if [ ! -z $GATEWAY ]; then
+    PARAMS="$PARAMS -oGatewayPorts=$GATEWAY"
+fi
+
+exec /usr/bin/autossh $PARAMS -L *:$LOCAL_PORT:127.0.0.1:$REMOTE_PORT $USER@$SERVER
