@@ -20,8 +20,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Set timezone
-RUN ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
+# Setup timezone
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata \
+    && rm /etc/localtime \
+    && echo "Europe/Brussels" > /etc/timezone \
+    && dpkg-reconfigure -f noninteractive tzdata
 
 # Generate locales
 RUN echo 'cs_CZ ISO-8859-2\n\
