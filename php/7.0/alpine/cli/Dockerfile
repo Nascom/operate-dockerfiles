@@ -161,11 +161,6 @@ COPY --from=wkhtmltopdf /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 # Mail support
 RUN apk add --no-cache ssmtp \
     && rm -rf /tmp/* /var/cache/apk/*
-COPY ssmtp.conf /config/ssmtp.conf
+COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 COPY mail.ini /usr/local/etc/php/conf.d/docker-php-mail.ini
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
-
-COPY docker-php-entrypoint /usr/local/bin/
-
-ENV ROOT_EMAIL root@domain.tld
-ENV SMTP_SERVER mail.domain.tld
