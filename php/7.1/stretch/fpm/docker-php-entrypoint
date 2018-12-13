@@ -1,7 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-
-envsubst < /config/ssmtp.conf > /etc/ssmtp/ssmtp.conf
 
 if [ ! -z $PHP_FPM_GID ]; then
     groupmod -g $PHP_FPM_GID -o www-data

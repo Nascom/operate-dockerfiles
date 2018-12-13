@@ -1,10 +1,7 @@
-# Custom PHP 7.0 fpm container
-FROM php:7.0-fpm-stretch
+# Custom PHP 7.3 cli container
+FROM php:7.3-cli-stretch
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
-
-ENV PHP_FPM_UID 33
-ENV PHP_FPM_GID 33
 
 RUN apt-get update \
     && apt-get install -y \
@@ -124,15 +121,6 @@ RUN apt-get update \
 # sockets extension
 RUN docker-php-ext-install -j$(nproc) sockets
 
-# mcrypt extension
-RUN apt-get update \
-    && apt-get install -y libmcrypt4 libmcrypt-dev \
-    && docker-php-ext-install -j$(nproc) mcrypt \
-    && apt-get remove -y --purge libmcrypt-dev \
-    && apt-get autoremove -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # BZip2 extension
 RUN apt-get update \
     && apt-get install -y libbz2-dev \
@@ -179,7 +167,7 @@ RUN pecl install -o -f igbinary \
     && docker-php-ext-enable igbinary
 
 # msgpack (cfr. memcached below!)
-RUN pecl install -o -f msgpack-0.5.7 \
+RUN pecl install -o -f msgpack \
     && docker-php-ext-enable --ini-name docker-php-ext-0-msgpack.ini msgpack
 
 # redis
@@ -196,7 +184,7 @@ RUN apt-get update \
 # memcached
 RUN apt-get update \
     && apt-get install -y git libmemcached11 libmemcached-dev zlib1g-dev libmemcachedutil2 \
-    && git clone --branch 2.2.0 https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached/ \
+    && git clone --branch v3.0.4 https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached/ \
     && docker-php-ext-configure memcached --enable-memcached-igbinary --enable-memcached-json --enable-memcached-msgpack \
     && docker-php-ext-install -j$(nproc) memcached \
     && apt-get remove -y --purge git libmemcached-dev zlib1g-dev \
@@ -207,8 +195,8 @@ RUN apt-get update \
 # sodium extension
 RUN apt-get update \
     && apt-get install -y libsodium18 libsodium-dev \
-    && pecl install -o -f libsodium-1.0.6 \
-    && docker-php-ext-enable libsodium \
+    && pecl install -o -f libsodium \
+    && docker-php-ext-enable sodium \
     && apt-get remove -y --purge git libsodium-dev \
     && apt-get autoremove -y \
     && apt-get clean \
@@ -289,5 +277,3 @@ RUN apt-get update \
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 COPY mail.ini /usr/local/etc/php/conf.d/docker-php-mail.ini
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
-
-COPY docker-php-entrypoint /usr/local/bin/

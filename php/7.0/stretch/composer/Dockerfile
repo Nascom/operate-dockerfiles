@@ -3,8 +3,17 @@ FROM nascom/php:7.0-cli
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
+ENV COMPOSER_HOME /composer
+ENV PATH /composer/vendor/bin:$PATH
+
 # Hack needed to make sure git clone works?
-RUN git config --system user.name Docker && git config --system user.email docker@localhost
+#RUN apt-get update \
+#  && apt-get install -y git \
+#  && git config --system user.name Docker \
+#  && git config --system user.email docker@localhost \
+#  && apt-get remove -y --purge git \
+#  && apt-get clean \
+#  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install composer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
@@ -13,13 +22,4 @@ RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
   && php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer \
   && rm -rf /tmp/*
 
-ENV COMPOSER_HOME /composer
-ENV PATH /composer/vendor/bin:$PATH
-
-COPY run.sh /run.sh
-RUN chmod +x /run.sh
-
-ENV TINI_VERSION v0.14.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
-ENTRYPOINT ["/tini", "--", "/run.sh"]
+COPY docker-php-entrypoint /usr/local/bin/

@@ -1,5 +1,5 @@
-# Custom PHP 7.0 drush container
-FROM nascom/php:7.0-composer
+# Custom PHP 7.3 drush container
+FROM nascom/php:7.3-composer
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 

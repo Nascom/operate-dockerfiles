@@ -152,8 +152,3 @@ RUN apk add --no-cache ssmtp \
 COPY ssmtp.conf /config/ssmtp.conf
 COPY mail.ini /usr/local/etc/php/conf.d/docker-php-mail.ini
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
-
-COPY docker-php-entrypoint /usr/local/bin/
-
-ENV ROOT_EMAIL root@domain.tld
-ENV SMTP_SERVER mail.domain.tld

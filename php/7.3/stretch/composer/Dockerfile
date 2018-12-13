@@ -1,5 +1,5 @@
-# Custom PHP 7.1 composer container
-FROM nascom/php:7.1-cli
+# Custom PHP 7.3 composer container
+FROM nascom/php:7.3-cli
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
