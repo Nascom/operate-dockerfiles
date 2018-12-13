@@ -1,7 +1,7 @@
 FROM surnet/alpine-wkhtmltopdf:3.7-0.12.5-small AS wkhtmltopdf
 
-# Custom PHP 7.2 CLI container
-FROM php:7.2-cli-alpine
+# Custom PHP 7.3 CLI container
+FROM php:7.3-cli-alpine
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -81,11 +81,11 @@ RUN apk add --no-cache autoconf make g++ \
     && rm -rf /tmp/*
 
 # msgpack
-RUN apk add --no-cache autoconf make g++ \
-    && pecl install -o -f msgpack \
-    && docker-php-ext-enable --ini-name docker-php-ext-0-msgpack.ini msgpack \
-    && apk del --no-cache autoconf make g++ \
-    && rm -rf /tmp/*
+#RUN apk add --no-cache autoconf make g++ \
+#    && pecl install -o -f msgpack \
+#    && docker-php-ext-enable --ini-name docker-php-ext-0-msgpack.ini msgpack \
+#    && apk del --no-cache autoconf make g++ \
+#    && rm -rf /tmp/*
 
 # redis
 RUN apk add --no-cache autoconf make g++ git \
@@ -96,17 +96,17 @@ RUN apk add --no-cache autoconf make g++ git \
     && rm -rf /tmp/* /usr/src/php/
 
 # memcached
-RUN apk add --no-cache autoconf make g++ git libmemcached libmemcached-dev zlib-dev \
-    && git clone --branch v3.0.4 https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached/ \
-    && docker-php-ext-configure memcached --enable-memcached-igbinary --enable-memcached-json --enable-memcached-msgpack \
-    && docker-php-ext-install -j$(nproc) memcached \
-    && apk del --no-cache autoconf make g++ git libmemcached-dev zlib-dev \
-    && rm -rf /tmp/* /usr/src/php/
+#RUN apk add --no-cache autoconf make g++ git libmemcached libmemcached-dev zlib-dev \
+#    && git clone --branch v3.0.4 https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached/ \
+#    && docker-php-ext-configure memcached --enable-memcached-igbinary --enable-memcached-json --enable-memcached-msgpack \
+#    && docker-php-ext-install -j$(nproc) memcached \
+#    && apk del --no-cache autoconf make g++ git libmemcached-dev zlib-dev \
+#    && rm -rf /tmp/* /usr/src/php/
 
 # zip extension
-RUN apk add --no-cache zlib zlib-dev \
+RUN apk add --no-cache zlib zlib-dev libzip libzip-dev \
     && docker-php-ext-install -j$(nproc) zip \
-    && apk del --no-cache zlib-dev
+    && apk del --no-cache zlib-dev libzip-dev
 
 # imap extension
 RUN apk add --no-cache imap c-client imap-dev krb5 krb5-dev cyrus-sasl-dev openssl openssl-dev \

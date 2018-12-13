@@ -5,6 +5,9 @@ FROM php:7.0-fpm-alpine
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
+ENV PHP_FPM_UID 33
+ENV PHP_FPM_GID 33
+
 RUN apk add --no-cache shadow \
     && docker-php-ext-enable opcache
 
@@ -166,8 +169,3 @@ COPY mail.ini /usr/local/etc/php/conf.d/docker-php-mail.ini
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
 
 COPY docker-php-entrypoint /usr/local/bin/
-
-ENV PHP_FPM_UID 33
-ENV PHP_FPM_GID 33
-ENV ROOT_EMAIL root@domain.tld
-ENV SMTP_SERVER mail.domain.tld
