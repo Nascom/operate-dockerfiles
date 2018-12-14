@@ -110,31 +110,32 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php5.6-dev \
         php-pear \
         libsodium-dev \
-    && pecl install libsodium \
+    && pecl install libsodium-1.0.7 \
     && apt-get remove --purge php5.6-dev php-pear -y \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add wkhtmltopdf
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y \
+        fontconfig \
+        libfreetype6 \
+        libjpeg62-turbo \
+        libpng12-0 \
+        libx11-6 \
+        libxcb1 \
+        libxext6 \
         libxrender1 \
+        xfonts-75dpi \
+        xfonts-base \
+    && curl -L -o /tmp/wkhtmltox_0.12.5-1.stretch_amd64.deb https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.jessie_amd64.deb \
+    && dpkg -i /tmp/wkhtmltox_0.12.5-1.stretch_amd64.deb \
+    && apt-get autoremove -y \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && wget -O /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
-    && tar -C /usr/local -xf /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
-    && ln -s /usr/local/wkhtmltox/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf \
-    && ln -s /usr/local/wkhtmltox/bin/wkhtmltoimage /usr/local/bin/wkhtmltoimage \
-    && rm -rf /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
-
-ENV SMTP_SERVER mail
-ENV ROOT_EMAIL admin@nascom.be
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY libsodium.ini /etc/php/5.6/mods-available/libsodium.ini
 COPY mail.ini   /etc/php/5.6/cli/conf.d/
 COPY php.ini    /etc/php/5.6/cli/conf.d/
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
-# Quickfix to make sure users can run container with custom config
-RUN  chmod a+w      /etc/ssmtp
-RUN  chmod a+w      /etc/ssmtp/ssmtp.conf

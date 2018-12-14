@@ -6,9 +6,6 @@ LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 VOLUME ["/app"]
 WORKDIR /app
 
-# Enable libsodium
-RUN phpenmod libsodium
-
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
