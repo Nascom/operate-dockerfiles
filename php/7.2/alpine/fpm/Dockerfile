@@ -29,10 +29,10 @@ RUN docker-php-ext-install -j$(nproc) exif
 RUN docker-php-ext-install -j$(nproc) iconv
 
 # imagick extension
-RUN apk add --no-cache autoconf make g++ imagemagick6 imagemagick6-dev \
+RUN apk add --no-cache autoconf make g++ imagemagick imagemagick-dev \
     && pecl install -f imagick \
     && docker-php-ext-enable imagick \
-    && apk del --no-cache autoconf make g++ imagemagick6-dev \
+    && apk del --no-cache autoconf make g++ imagemagick-dev \
     && rm -rf /tmp/*
 
 # mysqli (legacy)
