@@ -1,6 +1,6 @@
 # Custom PHP 5.6 base container
 # Should NOT be used for new projects unless it's required by the hosting provider
-FROM debian:jessie
+FROM debian:stretch
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -17,6 +17,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         apt-transport-https \
         ca-certificates \
         xz-utils \
+        gnupg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -85,7 +86,7 @@ zh_CN.UTF-8 UTF-8\n' >> /etc/locale.gen \
 
 # Add all PHP modules we need & cleanup
 RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
-    && echo "deb https://packages.sury.org/php/ jessie main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
+    && echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         php5.6-bcmath \
@@ -129,7 +130,7 @@ RUN apt-get update \
         libxrender1 \
         xfonts-75dpi \
         xfonts-base \
-    && curl -L -o /tmp/wkhtmltox_0.12.5-1.stretch_amd64.deb https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.jessie_amd64.deb \
+    && curl -L -o /tmp/wkhtmltox_0.12.5-1.stretch_amd64.deb https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb \
     && dpkg -i /tmp/wkhtmltox_0.12.5-1.stretch_amd64.deb \
     && apt-get autoremove -y \
     && apt-get clean \
