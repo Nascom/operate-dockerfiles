@@ -123,7 +123,7 @@ RUN apt-get update \
         fontconfig \
         libfreetype6 \
         libjpeg62-turbo \
-        libpng12-0 \
+        libpng16-16 \
         libx11-6 \
         libxcb1 \
         libxext6 \
