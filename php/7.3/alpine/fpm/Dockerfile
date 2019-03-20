@@ -138,7 +138,7 @@ RUN apk add --no-cache \
         libx11 \
         libxrender \
         libxext \
-        libssl1.0 \
+        libssl1.1 \
         ca-certificates \
         fontconfig \
         freetype \
