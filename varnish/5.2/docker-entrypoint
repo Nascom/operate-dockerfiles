@@ -1,0 +1,6 @@
+#!/bin/sh
+mkdir -p /var/lib/varnish/`hostname` && chown varnish /var/lib/varnish/`hostname`
+varnishd -j unix,user=varnish -F -a :${VARNISH_PORT} -f /etc/varnish/default.vcl -S /etc/varnish/secret -s malloc,${VARNISH_MEMORY} ${VARNISH_DAEMON_OPTS}
+
+sleep 1
+varnishlog

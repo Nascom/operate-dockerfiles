@@ -1,5 +1,5 @@
-# Basic Varnish 4.1 container
-FROM alpine:3.6
+# Basic Varnish 5.2 container
+FROM alpine:3.7
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
