@@ -95,14 +95,6 @@ RUN apk add --no-cache autoconf make g++ git \
     && apk del --no-cache autoconf make g++ git \
     && rm -rf /tmp/* /usr/src/php/
 
-# memcached
-#RUN apk add --no-cache autoconf make g++ git libmemcached libmemcached-dev zlib-dev \
-#    && git clone --branch v3.0.4 https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached/ \
-#    && docker-php-ext-configure memcached --enable-memcached-igbinary --enable-memcached-json --enable-memcached-msgpack \
-#    && docker-php-ext-install -j$(nproc) memcached \
-#    && apk del --no-cache autoconf make g++ git libmemcached-dev zlib-dev \
-#    && rm -rf /tmp/* /usr/src/php/
-
 # zip extension
 RUN apk add --no-cache zlib zlib-dev libzip libzip-dev \
     && docker-php-ext-install -j$(nproc) zip \
