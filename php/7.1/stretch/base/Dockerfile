@@ -94,6 +94,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.1-cli \
         php7.1-curl \
         php7.1-gd \
+        php7.1-gmp \
         php7.1-imagick \
         php7.1-imap \
         php7.1-intl \

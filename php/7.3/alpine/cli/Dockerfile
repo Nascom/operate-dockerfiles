@@ -1,7 +1,7 @@
-FROM surnet/alpine-wkhtmltopdf:3.8-0.12.5-small AS wkhtmltopdf
+FROM surnet/alpine-wkhtmltopdf:3.10-0.12.5-small AS wkhtmltopdf
 
 # Custom PHP 7.3 CLI container
-FROM php:7.3-cli-alpine3.8
+FROM php:7.3-cli-alpine
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -121,13 +121,18 @@ RUN apk add --no-cache libxslt libxslt-dev \
     && docker-php-ext-install -j$(nproc) xsl \
     && apk del --no-cache libxslt-dev
 
+# gmp extension
+RUN apk add --no-cache autoconf make g++ gmp gmp-dev \
+    && docker-php-ext-install -j$(nproc) gmp \
+    && apk del --no-cache gmp-dev
+
 # wkhtmltopdf
 RUN apk add --no-cache \
         libstdc++ \
         libx11 \
         libxrender \
         libxext \
-        libssl1.0 \
+        libssl1.1 \
         ca-certificates \
         fontconfig \
         freetype \
