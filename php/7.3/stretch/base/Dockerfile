@@ -1,5 +1,5 @@
 # Custom PHP 7.3 base container
-FROM debian:stretch
+FROM debian:stretch-slim
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
