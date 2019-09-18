@@ -1,7 +1,7 @@
 FROM surnet/alpine-wkhtmltopdf:3.10-0.12.5-small AS wkhtmltopdf
 
 # Custom PHP 7.3 FPM container
-FROM php:7.3-fpm-alpine
+FROM php:7.3-fpm-alpine3.10
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 

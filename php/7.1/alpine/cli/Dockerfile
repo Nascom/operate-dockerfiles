@@ -1,7 +1,7 @@
-FROM surnet/alpine-wkhtmltopdf:3.8-0.12.5-small AS wkhtmltopdf
+FROM surnet/alpine-wkhtmltopdf:3.10-0.12.5-small AS wkhtmltopdf
 
 # Custom PHP 7.1 CLI container
-FROM php:7.1-cli-alpine3.8
+FROM php:7.1-cli-alpine3.10
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -152,7 +152,7 @@ RUN apk add --no-cache \
         libx11 \
         libxrender \
         libxext \
-        libssl1.0 \
+        libssl1.1 \
         ca-certificates \
         fontconfig \
         freetype \

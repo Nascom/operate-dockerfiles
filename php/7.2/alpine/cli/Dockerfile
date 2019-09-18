@@ -1,7 +1,7 @@
 FROM surnet/alpine-wkhtmltopdf:3.10-0.12.5-small AS wkhtmltopdf
 
 # Custom PHP 7.2 CLI container
-FROM php:7.2-cli-alpine
+FROM php:7.2-cli-alpine3.10
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
