@@ -19,6 +19,8 @@ ENV PHP_FPM_PORT 9000
 ENV PHP_FPM_MAX_CHILDREN 5
 ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
 
+WORKDIR /var/www/html
+
 COPY mail.ini       /etc/php/7.2/fpm/conf.d/
 COPY php.ini        /etc/php/7.2/fpm/conf.d/
 COPY php-fpm.conf   /etc/php/7.2/fpm/php-fpm.conf

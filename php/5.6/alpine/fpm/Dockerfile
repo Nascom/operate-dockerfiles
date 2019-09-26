@@ -39,7 +39,7 @@ RUN apk add --no-cache autoconf make g++ imagemagick imagemagick-dev \
 RUN docker-php-ext-install -j$(nproc) mysql mysqli
 
 # PDO extension (with mysql & postgresql support)
-RUN apk add --no-cache postgresql-dev libpq \
+RUN apk add --no-cache postgresql-dev libpq mysql-client \
     && docker-php-ext-install -j$(nproc) pdo pdo_mysql pdo_pgsql \
     && apk del --no-cache postgresql-dev
 

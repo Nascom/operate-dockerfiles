@@ -3,12 +3,6 @@ FROM nascom/php:7.1-composer
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
-# Install Mysql client tools
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-client \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # Install drush
 RUN composer global require drush/drush:8.* --prefer-dist
 

@@ -20,6 +20,8 @@ ENV PHP_FPM_PORT 9000
 ENV PHP_FPM_MAX_CHILDREN 5
 ENV PHP_ERROR_REPORTING "E_ALL \& ~E_NOTICE \& ~E_STRICT \& ~E_DEPRECATED"
 
+WORKDIR /var/www/html
+
 # Enable libsodium
 RUN phpenmod libsodium
 
