@@ -167,5 +167,6 @@ RUN apk add --no-cache ssmtp \
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 COPY mail.ini /usr/local/etc/php/conf.d/docker-php-mail.ini
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
+COPY www.conf /usr/local/etc/php-fpm.d/www.conf
 
 COPY docker-php-entrypoint /usr/local/bin/
