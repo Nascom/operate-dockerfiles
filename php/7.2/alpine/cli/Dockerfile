@@ -132,7 +132,7 @@ RUN apk add --no-cache libxslt libxslt-dev \
 # gmp extension
 RUN apk add --no-cache autoconf make g++ gmp gmp-dev \
     && docker-php-ext-install -j$(nproc) gmp \
-    && apk del --no-cache gmp-dev
+    && apk del --no-cache autoconf make g++ gmp-dev
 
 # wkhtmltopdf
 RUN apk add --no-cache \
