@@ -4,7 +4,7 @@ ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH
 
 # Hack needed to make sure git clone works?
-RUN apk add --no-cache git \
+RUN apk add --no-cache git openssh-client \
   && git config --system user.name Docker && git config --system user.email docker@localhost
 
 # Install composer
