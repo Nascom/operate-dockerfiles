@@ -57,10 +57,8 @@ RUN apk add --no-cache \
         libpng-dev \
         libjpeg-turbo-dev \
     && docker-php-ext-configure gd \
-        --with-gd \
-        --with-freetype-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
+        --with-freetype \
+        --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && apk del --no-cache \
         freetype-dev \
@@ -89,7 +87,7 @@ RUN apk add --no-cache autoconf make g++ \
 
 # redis
 RUN apk add --no-cache autoconf make g++ git \
-    && git clone --branch 4.0.2 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis/ \
+    && git clone --branch 4.3.0 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis/ \
     && docker-php-ext-configure redis --enable-redis-igbinary \
     && docker-php-ext-install -j$(nproc) redis \
     && apk del --no-cache autoconf make g++ git \
