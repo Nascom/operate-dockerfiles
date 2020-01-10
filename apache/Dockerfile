@@ -28,6 +28,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && a2enmod ssl \
     && a2enmod remoteip \
     && a2enmod headers \
+    && a2enmod expires \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
