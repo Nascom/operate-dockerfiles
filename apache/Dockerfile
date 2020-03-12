@@ -1,9 +1,10 @@
-FROM debian:stretch
+FROM debian:buster
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Add apache support
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         apache2 \
     && a2enmod proxy \
