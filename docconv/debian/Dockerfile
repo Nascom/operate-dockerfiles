@@ -10,7 +10,6 @@ RUN apt-get update \
        zip \
        poppler-utils \
        wv \
-       unrtf \
        tidy \
      && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
