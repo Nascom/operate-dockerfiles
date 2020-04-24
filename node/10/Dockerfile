@@ -1,5 +1,5 @@
 # Basic node container with Ctrl-C support
-FROM node:6
+FROM node:10
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
