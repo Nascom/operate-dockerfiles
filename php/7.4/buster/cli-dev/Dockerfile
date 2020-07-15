@@ -1,4 +1,4 @@
-# Custom PHP 7.3 composer container
+# Custom PHP 7.4 composer container
 FROM nascom/php:7.4-cli-buster
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"

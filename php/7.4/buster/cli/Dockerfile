@@ -1,4 +1,4 @@
-# Custom PHP 7.4 base container
+# Custom PHP 7.4 cli container
 FROM debian:buster-slim
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
