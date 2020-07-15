@@ -1,4 +1,5 @@
-FROM nascom/php:7.4-cli-alpine
+# Custom PHP 7.3 composer container
+FROM nascom/php:7.4-cli-buster
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -6,8 +7,7 @@ ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH
 
 # Hack needed to make sure git clone works?
-RUN apk add --no-cache git openssh-client patch \
-  && git config --system user.name Docker && git config --system user.email docker@localhost
+RUN git config --system user.name Docker && git config --system user.email docker@localhost
 
 # Install composer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
