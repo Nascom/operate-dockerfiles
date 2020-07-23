@@ -132,6 +132,7 @@ RUN apt-get update \
 
 COPY docker-php-entrypoint /usr/local/bin/
 COPY php.ini /etc/php/7.3/cli/conf.d/
+COPY policy.xml /etc/ImageMagick-6/policy.xml
 
 ENTRYPOINT ["docker-php-entrypoint"]
 
