@@ -94,50 +94,17 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php8.0-curl \
         php8.0-gd \
         php8.0-gmp \
+        php8.0-imagick \
         php8.0-imap \
         php8.0-intl \
         php8.0-mbstring \
+        php8.0-memcached \
         php8.0-mysql \
+        php8.0-redis \
         php8.0-soap \
         php8.0-tidy \
         php8.0-xml \
         php8.0-zip \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Install imagick, igbinary & redis extension from source tree for now
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y php8.0-dev imagemagick libmagick++-dev \
-    && cd /tmp \
-    && git clone https://github.com/Imagick/imagick \
-    && cd imagick \
-    && phpize \
-    && ./configure \
-    && make \
-    && make install \
-    && echo "extension=imagick.so" > /etc/php/8.0/mods-available/imagick.ini \
-    && phpenmod imagick \
-    && cd /tmp \
-    && git clone --branch 3.1.6 https://github.com/igbinary/igbinary \
-    && cd igbinary \
-    && phpize \
-    && ./configure \
-    && make \
-    && make install \
-    && echo "extension=igbinary.so" > /etc/php/8.0/mods-available/igbinary.ini \
-    && phpenmod igbinary \
-    && cd /tmp \
-    && git clone --branch 5.3.2 https://github.com/phpredis/phpredis \
-    && cd phpredis \
-    && phpize \
-    && ./configure --enable-redis-igbinary \
-    && make \
-    && make install \
-    && echo "extension=redis.so" > /etc/php/8.0/mods-available/redis.ini \
-    && phpenmod redis \
-    && apt-get remove -y --purge php8.0-dev libmagick++-dev \
-    && apt-get autoremove -y \
-    && apt-get autoclean \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
