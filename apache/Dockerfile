@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:buster-slim
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -7,6 +7,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         apache2 \
+        brotli \
     && a2enmod proxy \
     && a2enmod proxy_http \
     && a2enmod proxy_fcgi \
@@ -30,6 +31,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && a2enmod remoteip \
     && a2enmod headers \
     && a2enmod expires \
+    && a2enmod brotli \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
