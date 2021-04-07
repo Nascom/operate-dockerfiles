@@ -88,21 +88,23 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-        php-apcu-bc \
+        php7.1-apcu \
+        php7.1-apcu-bc \
         php7.1-bcmath \
         php7.1-bz2 \
         php7.1-cli \
+        php7.1-common \
         php7.1-curl \
         php7.1-gd \
         php7.1-gmp \
-        php-imagick \
+        php7.1-imagick \
         php7.1-imap \
         php7.1-intl \
         php7.1-json \
         php7.1-mbstring \
-        php-memcached \
+        php7.1-memcached \
         php7.1-mysql \
-        php-redis \
+        php7.1-redis \
         php7.1-soap \
         php7.1-sodium \
         php7.1-tidy \

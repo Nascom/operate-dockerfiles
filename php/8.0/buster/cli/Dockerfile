@@ -91,6 +91,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php8.0-bcmath \
         php8.0-bz2 \
         php8.0-cli \
+        php8.0-common \
         php8.0-curl \
         php8.0-gd \
         php8.0-gmp \

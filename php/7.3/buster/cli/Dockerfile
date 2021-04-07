@@ -88,10 +88,12 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        php7.3-apcu \
         php7.3-apcu-bc \
         php7.3-bcmath \
         php7.3-bz2 \
         php7.3-cli \
+        php7.3-common \
         php7.3-curl \
         php7.3-gd \
         php7.3-gmp \
