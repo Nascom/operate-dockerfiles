@@ -19,3 +19,8 @@ COPY --from=composer2 /usr/bin/composer /usr/bin/composer2
 
 # Install drush
 RUN composer global require drush/drush:8.* --prefer-dist
+
+# Install symfony CLI
+RUN wget https://get.symfony.com/cli/installer -O - | bash \
+    && mv /root/.symfony/bin/symfony /usr/local/bin/symfony \
+    && rm -rf /root/.symfony
