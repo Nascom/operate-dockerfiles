@@ -104,8 +104,10 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.3-mbstring \
         php7.3-memcached \
         php7.3-mysql \
+        php7.3-pgsql \
         php7.3-redis \
         php7.3-soap \
+        php7.3-sqlite3 \
         php7.3-tidy \
         php7.3-xml \
         php7.3-xmlrpc \

@@ -104,8 +104,10 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.4-mbstring \
         php7.4-memcached \
         php7.4-mysql \
+        php7.4-pgsql \
         php7.4-redis \
         php7.4-soap \
+        php7.4-sqlite3 \
         php7.4-tidy \
         php7.4-xml \
         php7.4-xmlrpc \

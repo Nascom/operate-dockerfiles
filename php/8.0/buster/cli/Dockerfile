@@ -101,6 +101,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php8.0-mbstring \
         php8.0-memcached \
         php8.0-mysql \
+        php8.0-pgsql \
         php8.0-redis \
         php8.0-soap \
         php8.0-tidy \
