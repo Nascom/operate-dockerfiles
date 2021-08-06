@@ -104,6 +104,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php8.0-pgsql \
         php8.0-redis \
         php8.0-soap \
+        php8.0-sqlite3 \
         php8.0-tidy \
         php8.0-xml \
         php8.0-zip \
