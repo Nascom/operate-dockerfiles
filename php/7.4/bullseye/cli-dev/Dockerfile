@@ -3,7 +3,7 @@ FROM composer:1 as composer1
 
 FROM composer:2 as composer2
 
-FROM nascom/php:7.4-cli-buster
+FROM nascom/php:7.4-cli-bullseye
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 

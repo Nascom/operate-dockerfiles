@@ -1,5 +1,5 @@
 # Custom PHP 7.4 FPM container
-FROM nascom/php:7.4-cli-buster
+FROM nascom/php:7.4-cli-bullseye
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
