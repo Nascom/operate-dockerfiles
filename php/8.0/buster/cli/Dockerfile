@@ -130,6 +130,14 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Add pdftk
+RUN apt-get update \
+    && apt-get install -y \
+        pdftk \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 COPY docker-php-entrypoint /usr/local/bin/
 COPY php.ini /etc/php/8.0/cli/conf.d/
 COPY policy.xml /etc/ImageMagick-6/policy.xml
