@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -32,6 +32,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && a2enmod headers \
     && a2enmod expires \
     && a2enmod brotli \
+    && rm -rf /etc/apache2/mods-enabled/deflate.conf \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
