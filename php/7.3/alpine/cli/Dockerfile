@@ -1,7 +1,7 @@
-FROM surnet/alpine-wkhtmltopdf:3.10-0.12.5-small AS wkhtmltopdf
+FROM surnet/alpine-wkhtmltopdf:3.13.5-0.12.6-small AS wkhtmltopdf
 
 # Custom PHP 7.3 CLI container
-FROM php:7.3-cli-alpine3.10
+FROM php:7.3-cli-alpine3.13
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -89,7 +89,7 @@ RUN apk add --no-cache autoconf make g++ \
 
 # redis
 RUN apk add --no-cache autoconf make g++ git \
-    && git clone --branch 4.3.0 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis/ \
+    && git clone --branch 5.3.4 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis/ \
     && docker-php-ext-configure redis --enable-redis-igbinary \
     && docker-php-ext-install -j$(nproc) redis \
     && apk del --no-cache autoconf make g++ git \
@@ -149,3 +149,6 @@ RUN apk add --no-cache ssmtp \
 COPY ssmtp.conf /config/ssmtp.conf
 COPY mail.ini /usr/local/etc/php/conf.d/docker-php-mail.ini
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
+
+# Copy ImageMagick policy file
+COPY policy.xml /etc/ImageMagick-7/policy.xml

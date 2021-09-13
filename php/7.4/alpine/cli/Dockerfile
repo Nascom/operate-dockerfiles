@@ -1,7 +1,7 @@
-FROM surnet/alpine-wkhtmltopdf:3.10-0.12.5-small AS wkhtmltopdf
+FROM surnet/alpine-wkhtmltopdf:3.13.5-0.12.6-small AS wkhtmltopdf
 
 # Custom PHP 7.4 CLI container
-FROM php:7.4-cli-alpine3.10
+FROM php:7.4-cli-alpine3.13
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -87,7 +87,7 @@ RUN apk add --no-cache autoconf make g++ \
 
 # redis
 RUN apk add --no-cache autoconf make g++ git \
-    && git clone --branch 4.3.0 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis/ \
+    && git clone --branch 5.3.4 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis/ \
     && docker-php-ext-configure redis --enable-redis-igbinary \
     && docker-php-ext-install -j$(nproc) redis \
     && apk del --no-cache autoconf make g++ git \
@@ -107,11 +107,6 @@ RUN apk add --no-cache imap c-client imap-dev krb5 krb5-dev cyrus-sasl-dev opens
 # soap extension
 RUN apk add --no-cache libxml2 libxml2-dev \
     && docker-php-ext-install -j$(nproc) soap \
-    && apk del --no-cache libxml2-dev
-
-# xmlrpc extension
-RUN apk add --no-cache libxml2-dev \
-    && docker-php-ext-install -j$(nproc) xmlrpc \
     && apk del --no-cache libxml2-dev
 
 # xsl extension
@@ -143,3 +138,6 @@ COPY --from=wkhtmltopdf /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 
 # Default PHP dev settings
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
+
+# Copy ImageMagick policy file
+COPY policy.xml /etc/ImageMagick-7/policy.xml

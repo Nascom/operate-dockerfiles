@@ -1,7 +1,7 @@
 FROM surnet/alpine-wkhtmltopdf:3.13.5-0.12.6-small AS wkhtmltopdf
 
-# Custom PHP 7.3 FPM container
-FROM php:7.3-fpm-alpine3.13
+# Custom PHP 8.0 FPM container
+FROM php:8.0-fpm-alpine3.13
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
@@ -57,10 +57,8 @@ RUN apk add --no-cache \
         libpng-dev \
         libjpeg-turbo-dev \
     && docker-php-ext-configure gd \
-        --with-gd \
-        --with-freetype-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
+        --with-freetype \
+        --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && apk del --no-cache \
         freetype-dev \
@@ -102,7 +100,7 @@ RUN apk add --no-cache zlib zlib-dev libzip libzip-dev \
 
 # imap extension
 RUN apk add --no-cache imap c-client imap-dev krb5 krb5-dev cyrus-sasl-dev openssl openssl-dev \
-    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install -j$(nproc) imap \
     && apk del --no-cache imap-dev krb5-dev cyrus-sasl-dev openssl-dev
 
@@ -111,15 +109,10 @@ RUN apk add --no-cache libxml2 libxml2-dev \
     && docker-php-ext-install -j$(nproc) soap \
     && apk del --no-cache libxml2-dev
 
-# xmlrpc extension
-RUN apk add --no-cache libxml2-dev \
-    && docker-php-ext-install -j$(nproc) xmlrpc \
-    && apk del --no-cache libxml2-dev
-
 # xsl extension
-RUN apk add --no-cache libxslt libxslt-dev \
+RUN apk add --no-cache libxslt libxslt-dev libgcrypt libgcrypt-dev \
     && docker-php-ext-install -j$(nproc) xsl \
-    && apk del --no-cache libxslt-dev
+    && apk del --no-cache libxslt-dev libgcrypt-dev
 
 # gmp extension
 RUN apk add --no-cache autoconf make g++ gmp gmp-dev \
@@ -143,11 +136,6 @@ RUN apk add --no-cache \
         ttf-ubuntu-font-family
 COPY --from=wkhtmltopdf /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 
-# Mail support
-RUN apk add --no-cache ssmtp \
-    && rm -rf /tmp/* /var/cache/apk/*
-COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
-COPY mail.ini /usr/local/etc/php/conf.d/docker-php-mail.ini
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
 
