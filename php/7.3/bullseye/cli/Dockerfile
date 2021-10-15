@@ -1,4 +1,4 @@
-# Custom PHP 8.0 cli container
+# Custom PHP 7.3 cli container
 FROM debian:bullseye-slim
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
@@ -48,31 +48,35 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && echo "deb https://packages.sury.org/php/ bullseye main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-        php8.0-bcmath \
-        php8.0-bz2 \
-        php8.0-cli \
-        php8.0-common \
-        php8.0-curl \
-        php8.0-gd \
-        php8.0-gmp \
-        php8.0-imagick \
-        php8.0-imap \
-        php8.0-intl \
-        php8.0-mbstring \
-        php8.0-memcached \
-        php8.0-mysql \
-        php8.0-pgsql \
-        php8.0-redis \
-        php8.0-soap \
-        php8.0-sqlite3 \
-        php8.0-tidy \
-        php8.0-xml \
-        php8.0-zip \
+        php7.3-apcu \
+        php7.3-apcu-bc \
+        php7.3-bcmath \
+        php7.3-bz2 \
+        php7.3-cli \
+        php7.3-common \
+        php7.3-curl \
+        php7.3-gd \
+        php7.3-gmp \
+        php7.3-imagick \
+        php7.3-imap \
+        php7.3-intl \
+        php7.3-json \
+        php7.3-mbstring \
+        php7.3-memcached \
+        php7.3-mysql \
+        php7.3-pgsql \
+        php7.3-redis \
+        php7.3-soap \
+        php7.3-sqlite3 \
+        php7.3-tidy \
+        php7.3-xml \
+        php7.3-xmlrpc \
+        php7.3-zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY docker-php-entrypoint /usr/local/bin/
-COPY php.ini /etc/php/8.0/cli/conf.d/
+COPY php.ini /etc/php/7.3/cli/conf.d/
 COPY policy.xml /etc/ImageMagick-6/policy.xml
 
 ENTRYPOINT ["docker-php-entrypoint"]

@@ -1,9 +1,9 @@
-# Custom PHP 7.4 composer container
+# Custom PHP 7.3 cli-dev container
 FROM composer:1 as composer1
 
 FROM composer:2 as composer2
 
-FROM nascom/php:7.4-cli-bullseye
+FROM nascom/php:7.3-cli-bullseye
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 

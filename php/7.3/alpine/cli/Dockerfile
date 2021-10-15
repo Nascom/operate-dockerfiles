@@ -1,5 +1,3 @@
-FROM surnet/alpine-wkhtmltopdf:3.13.5-0.12.6-small AS wkhtmltopdf
-
 # Custom PHP 7.3 CLI container
 FROM php:7.3-cli-alpine3.13
 
@@ -126,28 +124,6 @@ RUN apk add --no-cache autoconf make g++ gmp gmp-dev \
     && docker-php-ext-install -j$(nproc) gmp \
     && apk del --no-cache autoconf make g++ gmp-dev
 
-# wkhtmltopdf
-RUN apk add --no-cache \
-        libstdc++ \
-        libx11 \
-        libxrender \
-        libxext \
-        libssl1.1 \
-        ca-certificates \
-        fontconfig \
-        freetype \
-        ttf-dejavu \
-        ttf-droid \
-        ttf-freefont \
-        ttf-liberation \
-        ttf-ubuntu-font-family
-COPY --from=wkhtmltopdf /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
-
-# Mail support
-RUN apk add --no-cache ssmtp \
-    && rm -rf /tmp/* /var/cache/apk/*
-COPY ssmtp.conf /config/ssmtp.conf
-COPY mail.ini /usr/local/etc/php/conf.d/docker-php-mail.ini
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
 
 # Copy ImageMagick policy file

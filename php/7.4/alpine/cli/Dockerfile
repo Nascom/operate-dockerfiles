@@ -1,5 +1,3 @@
-FROM surnet/alpine-wkhtmltopdf:3.13.5-0.12.6-small AS wkhtmltopdf
-
 # Custom PHP 7.4 CLI container
 FROM php:7.4-cli-alpine3.13
 
@@ -118,23 +116,6 @@ RUN apk add --no-cache libxslt libxslt-dev libgcrypt libgcrypt-dev \
 RUN apk add --no-cache autoconf make g++ gmp gmp-dev \
     && docker-php-ext-install -j$(nproc) gmp \
     && apk del --no-cache autoconf make g++ gmp-dev
-
-# wkhtmltopdf
-RUN apk add --no-cache \
-        libstdc++ \
-        libx11 \
-        libxrender \
-        libxext \
-        libssl1.1 \
-        ca-certificates \
-        fontconfig \
-        freetype \
-        ttf-dejavu \
-        ttf-droid \
-        ttf-freefont \
-        ttf-liberation \
-        ttf-ubuntu-font-family
-COPY --from=wkhtmltopdf /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 
 # Default PHP dev settings
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
