@@ -55,14 +55,14 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php8.1-curl \
         php8.1-gd \
         php8.1-gmp \
-        # php8.1-imagick \
+        php8.1-imagick \
         php8.1-imap \
         php8.1-intl \
         php8.1-mbstring \
-        # php8.1-memcached \
+        php8.1-memcached \
         php8.1-mysql \
         php8.1-pgsql \
-        # php8.1-redis \
+        php8.1-redis \
         php8.1-soap \
         php8.1-sqlite3 \
         php8.1-tidy \
@@ -71,42 +71,6 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install imagick, igbinary & redis extension from source tree for now
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y git php8.1-dev imagemagick libmagick++-dev \
-    && cd /tmp \
-    && git clone https://github.com/Imagick/imagick \
-    && cd imagick \
-    && phpize \
-    && ./configure \
-    && make \
-    && make install \
-    && echo "extension=imagick.so" > /etc/php/8.1/mods-available/imagick.ini \
-    && phpenmod imagick \
-    && cd /tmp \
-    && git clone --branch 3.2.6 https://github.com/igbinary/igbinary \
-    && cd igbinary \
-    && phpize \
-    && ./configure \
-    && make \
-    && make install \
-    && echo "extension=igbinary.so" > /etc/php/8.1/mods-available/igbinary.ini \
-    && phpenmod igbinary \
-    && cd /tmp \
-    && git clone --branch 5.3.4 https://github.com/phpredis/phpredis \
-    && cd phpredis \
-    && phpize \
-    && ./configure --enable-redis-igbinary \
-    && make \
-    && make install \
-    && echo "extension=redis.so" > /etc/php/8.1/mods-available/redis.ini \
-    && phpenmod redis \
-    && apt-get remove -y --purge git php8.1-dev libmagick++-dev \
-    && apt-get autoremove -y \
-    && apt-get autoclean \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-   
 COPY docker-php-entrypoint /usr/local/bin/
 COPY php.ini /etc/php/8.1/cli/conf.d/
 COPY policy.xml /etc/ImageMagick-6/policy.xml
