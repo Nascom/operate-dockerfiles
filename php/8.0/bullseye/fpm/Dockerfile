@@ -4,10 +4,12 @@ FROM nascom/php:8.0-cli-bullseye
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
 # Add fpm module
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y \
         php8.0-fpm \
     && apt-get clean \
+    && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 9000

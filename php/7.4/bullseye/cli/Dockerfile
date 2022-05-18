@@ -3,9 +3,10 @@ FROM debian:bullseye-slim
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
-# Install most recent version of basic utilities
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+# Install most recent version of basic utilities & upgrade base libs & packages
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y \
         curl \
         wget \
         locales \
@@ -17,6 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         gnupg \
         default-mysql-client \
     && apt-get clean \
+    && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set timezone
@@ -46,8 +48,8 @@ nl_NL.UTF-8 UTF-8\n' >> /etc/locale.gen \
 # Add all PHP modules we need & cleanup
 RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && echo "deb https://packages.sury.org/php/ bullseye main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
-    && DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    && apt-get update \
+    && apt-get install -y \
         php7.4-apcu \
         php7.4-apcu-bc \
         php7.4-bcmath \
@@ -73,6 +75,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.4-xmlrpc \
         php7.4-zip \
     && apt-get clean \
+    && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY docker-php-entrypoint /usr/local/bin/
