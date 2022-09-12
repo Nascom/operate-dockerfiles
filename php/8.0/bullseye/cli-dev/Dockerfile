@@ -26,6 +26,8 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN composer global require drush/drush:8.* --prefer-dist
 
 # Install symfony CLI
-RUN wget https://get.symfony.com/cli/installer -O - | bash \
-    && mv /root/.symfony/bin/symfony /usr/local/bin/symfony \
-    && rm -rf /root/.symfony
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash \
+    && apt install symfony-cli \
+    && apt-get clean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
