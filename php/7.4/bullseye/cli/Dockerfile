@@ -74,6 +74,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.4-xml \
         php7.4-xmlrpc \
         php7.4-zip \
+        imagemagick \
     && apt-get clean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

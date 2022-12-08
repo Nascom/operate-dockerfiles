@@ -70,6 +70,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php8.1-tidy \
         php8.1-xml \
         php8.1-zip \
+        imagemagick \
     && apt-get clean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
