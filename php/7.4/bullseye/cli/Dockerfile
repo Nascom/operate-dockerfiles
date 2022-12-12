@@ -3,6 +3,10 @@ FROM debian:bullseye-slim
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
+ENTRYPOINT ["docker-php-entrypoint"]
+
+CMD ["php", "-a"]
+
 # Install most recent version of basic utilities & upgrade base libs & packages
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -59,6 +63,7 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php7.4-curl \
         php7.4-gd \
         php7.4-gmp \
+        php7.4-igbinary \
         php7.4-imagick \
         php7.4-imap \
         php7.4-intl \
@@ -82,7 +87,3 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
 COPY docker-php-entrypoint /usr/local/bin/
 COPY php.ini /etc/php/7.4/cli/conf.d/
 COPY policy.xml /etc/ImageMagick-6/policy.xml
-
-ENTRYPOINT ["docker-php-entrypoint"]
-
-CMD ["php", "-a"]

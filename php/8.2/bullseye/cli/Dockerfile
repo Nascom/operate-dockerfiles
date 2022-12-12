@@ -3,6 +3,10 @@ FROM debian:bullseye-slim
 
 LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
 
+ENTRYPOINT ["docker-php-entrypoint"]
+
+CMD ["php", "-a"]
+
 # Install most recent version of basic utilities
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -57,11 +61,15 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
         php8.2-curl \
         php8.2-gd \
         php8.2-gmp \
+        php8.2-igbinary \
+        php8.2-imagick \
         php8.2-imap \
         php8.2-intl \
         php8.2-mbstring \
+        php8.2-memcached \
         php8.2-mysql \
         php8.2-pgsql \
+        php8.2-redis \
         php8.2-soap \
         php8.2-sqlite3 \
         php8.2-tidy \
@@ -72,46 +80,6 @@ RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install imagick, igbinary & redis extension from source tree for now
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y git php8.2-dev libmagick++-dev \
-    && cd /tmp \
-    && git clone https://github.com/Imagick/imagick \
-    && cd imagick \
-    && phpize \
-    && ./configure \
-    && make \
-    && make install \
-    && echo "extension=imagick.so" > /etc/php/8.2/mods-available/imagick.ini \
-    && phpenmod imagick \
-    && cd /tmp \
-    && git clone --branch 3.2.12 https://github.com/igbinary/igbinary \
-    && cd igbinary \
-    && phpize \
-    && ./configure \
-    && make \
-    && make install \
-    && echo "extension=igbinary.so" > /etc/php/8.2/mods-available/igbinary.ini \
-    && phpenmod igbinary \
-    && cd /tmp \
-    && git clone --branch 5.3.7 https://github.com/phpredis/phpredis \
-    && cd phpredis \
-    && phpize \
-    && ./configure --enable-redis-igbinary \
-    && make \
-    && make install \
-    && echo "extension=redis.so" > /etc/php/8.2/mods-available/redis.ini \
-    && phpenmod redis \
-    && apt-get remove -y --purge git php8.2-dev libmagick++-dev \
-    && apt-get autoremove -y \
-    && apt-get autoclean \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 COPY docker-php-entrypoint /usr/local/bin/
 COPY php.ini /etc/php/8.2/cli/conf.d/
 COPY policy.xml /etc/ImageMagick-6/policy.xml
-
-ENTRYPOINT ["docker-php-entrypoint"]
-
-CMD ["php", "-a"]
