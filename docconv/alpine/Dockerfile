@@ -1,9 +1,9 @@
-FROM golang:1.14-alpine3.11 AS build
+FROM golang:1.19-alpine3.17 AS build
 
 RUN apk add --no-cache git \
-    && go get code.sajari.com/docconv/...
+    && GO111MODULE=off go get code.sajari.com/docconv/...
 
-FROM alpine:3.11
+FROM alpine:3.17
 
 RUN apk add --no-cache \
       tidyhtml \
