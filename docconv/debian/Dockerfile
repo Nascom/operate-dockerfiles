@@ -1,8 +1,8 @@
-FROM golang:1.14-buster AS build
+FROM golang:1.19-bullseye AS build
 
-RUN go get code.sajari.com/docconv/...
+RUN GO111MODULE=off go get code.sajari.com/docconv/...
 
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 RUN apt-get update \
     && apt-get upgrade -y \
