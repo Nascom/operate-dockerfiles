@@ -51,7 +51,7 @@ nl_NL.UTF-8 UTF-8\n' >> /etc/locale.gen \
 
 # Add all PHP modules we need & cleanup
 RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
-    && echo "deb https://packages.sury.org/php/ bullseye main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
+    && echo "deb https://packages.sury.org/php/ $(lsb_release -cs) main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && apt-get update \
     && apt-get install -y \
         php8.1-bcmath \
