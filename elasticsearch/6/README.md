@@ -1,0 +1,3 @@
+Legacy Elasticsearch container (created because there is no official ES 6.x build available for arm64)
+
+UseAVX JVM option had to be removed because that was not supported on Raspberry Pi OS ...
