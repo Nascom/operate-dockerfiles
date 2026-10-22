@@ -1,7 +1,7 @@
 # Custom PHP 7.4 FPM container
-FROM nascom/php:7.4-cli-bullseye
+FROM nascom/php:7.4-cli-bullseye-security-20261021
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@nascom.be>"
 
 # Add fpm module
 RUN apt-get update \

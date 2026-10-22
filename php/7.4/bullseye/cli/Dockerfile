@@ -1,7 +1,12 @@
 # Custom PHP 7.4 cli container
 FROM debian:bullseye-slim
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+# Bullseye security packages have moved to Debian's archive.
+RUN sed -i \
+    's|http://deb.debian.org/debian-security|http://archive.debian.org/debian-security|g' \
+    /etc/apt/sources.list
+
+LABEL maintainer="Christopher Bielen <christopher.bielen@nascom.be>"
 
 ENTRYPOINT ["docker-php-entrypoint"]
 
@@ -50,8 +55,10 @@ nl_NL.UTF-8 UTF-8\n' >> /etc/locale.gen \
     && locale-gen
 
 # Add all PHP modules we need & cleanup
-RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
-    && echo "deb https://packages.sury.org/php/ bullseye main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
+RUN curl -fsSL https://packages.sury.org/php/apt.gpg \
+        -o /usr/share/keyrings/debsuryorg-archive.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/debsuryorg-archive.gpg] https://packages.sury.org/php/ bullseye main" \
+        > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && apt-get update \
     && apt-get install -y \
         php7.4-apcu \
