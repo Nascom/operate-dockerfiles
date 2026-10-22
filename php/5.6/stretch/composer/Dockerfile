@@ -2,7 +2,7 @@
 # Should NOT be used for new projects unless it's required by the hosting provider
 FROM nascom/php:5.6-cli
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 # Hack needed to make sure git clone works?
 RUN git config --system user.name Docker && git config --system user.email docker@localhost

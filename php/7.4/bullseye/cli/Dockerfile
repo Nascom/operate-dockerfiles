@@ -6,7 +6,7 @@ RUN sed -i \
     's|http://deb.debian.org/debian-security|http://archive.debian.org/debian-security|g' \
     /etc/apt/sources.list
 
-LABEL maintainer="Christopher Bielen <christopher.bielen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 ENTRYPOINT ["docker-php-entrypoint"]
 

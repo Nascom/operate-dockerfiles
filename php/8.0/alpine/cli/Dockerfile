@@ -3,7 +3,7 @@ FROM surnet/alpine-wkhtmltopdf:3.13.5-0.12.6-small AS wkhtmltopdf
 # Custom PHP 8.0 CLI container
 FROM php:8.0-cli-alpine3.13
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 RUN apk add --no-cache shadow \
     && docker-php-ext-enable opcache

@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 ENV SSH_AUTH_SOCK /ssh-agent
 ENV GATEWAY no

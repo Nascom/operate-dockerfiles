@@ -1,7 +1,7 @@
 # Custom PHP 7.0 base container (used as basis for all other PHP containers)
 FROM debian:stretch
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 # Install most recent version of basic utilities
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

@@ -5,7 +5,7 @@ FROM composer:2 as composer2
 
 FROM nascom/php:7.1-cli-buster
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH

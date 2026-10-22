@@ -3,7 +3,7 @@ FROM composer:2 as composer
 
 FROM nascom/php:8.3-cli-bookworm
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH

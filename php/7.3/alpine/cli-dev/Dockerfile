@@ -1,6 +1,6 @@
 FROM nascom/php:7.3-cli-alpine
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH

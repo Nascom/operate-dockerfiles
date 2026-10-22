@@ -1,7 +1,7 @@
 # Custom PHP 7.3 FPM container
 FROM php:7.3-fpm-alpine3.13
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 RUN apk add --no-cache shadow \
     && docker-php-ext-enable opcache

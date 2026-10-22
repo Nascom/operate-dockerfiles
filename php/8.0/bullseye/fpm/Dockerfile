@@ -1,7 +1,7 @@
 # Custom PHP 8.0 FPM container
 FROM nascom/php:8.0-cli-bullseye
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 # Add fpm module
 RUN apt-get update \

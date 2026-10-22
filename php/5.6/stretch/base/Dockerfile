@@ -2,7 +2,7 @@
 # Should NOT be used for new projects unless it's required by the hosting provider
 FROM debian:stretch
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 # Install most recent version of basic utilities
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

@@ -1,7 +1,7 @@
 # Basic Varnish 4.1 container
 FROM alpine:3.6
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 ENV VARNISH_PORT 80
 ENV VARNISH_MEMORY 512m

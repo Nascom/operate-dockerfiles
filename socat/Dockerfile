@@ -1,6 +1,6 @@
 FROM alpine
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 RUN apk add --no-cache socat \
     && rm -rf /tmp/* /var/cache/apk/*

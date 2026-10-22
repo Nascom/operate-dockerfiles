@@ -1,7 +1,7 @@
 # Custom PHP 8.1 FPM container
 FROM nascom/php:8.1-cli-bookworm
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 # Add fpm module
 RUN apt-get update \

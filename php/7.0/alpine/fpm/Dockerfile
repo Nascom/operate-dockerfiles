@@ -3,7 +3,7 @@ FROM surnet/alpine-wkhtmltopdf:3.7-0.12.5-small AS wkhtmltopdf
 # Custom PHP 7.0 FPM container
 FROM php:7.0-fpm-alpine
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 ENV PHP_FPM_UID 33
 ENV PHP_FPM_GID 33

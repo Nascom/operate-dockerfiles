@@ -1,7 +1,7 @@
 # Dovecot (IMAP)
 FROM debian:jessie
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 # Install most recent version
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

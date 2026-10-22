@@ -1,7 +1,7 @@
 # Custom PHP 7.3 FPM container
 FROM nascom/php:7.3-cli-bullseye
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 # Add fpm module
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \

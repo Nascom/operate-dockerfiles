@@ -1,7 +1,7 @@
 # Custom PHP drush container
 FROM nascom/php:5.6-composer
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 # Install drush
 RUN composer global require drush/drush:8.* --prefer-dist

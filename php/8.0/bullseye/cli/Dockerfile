@@ -1,7 +1,7 @@
 # Custom PHP 8.0 cli container
 FROM debian:bullseye-slim
 
-LABEL maintainer="Wim Vandersmissen <wim.vandersmissen@nascom.be>"
+LABEL maintainer="Christopher Bielen <christopher.bielen@dynamate.be>"
 
 ENTRYPOINT ["docker-php-entrypoint"]
 
