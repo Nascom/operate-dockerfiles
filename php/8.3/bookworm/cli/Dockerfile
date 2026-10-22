@@ -22,7 +22,7 @@ RUN apt-get update \
         gnupg \
         default-mysql-client \
     && apt-get clean \
-    && apt-get autoremove \
+    && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set timezone
@@ -50,8 +50,10 @@ nl_NL.UTF-8 UTF-8\n' >> /etc/locale.gen \
     && locale-gen
 
 # Add all PHP modules we need & cleanup
-RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - \
-    && echo "deb https://packages.sury.org/php/ bookworm main" > /etc/apt/sources.list.d/php-packages.sury.org.list \
+RUN mkdir -p /etc/apt/keyrings \
+    && wget -qO /etc/apt/keyrings/sury-php.gpg https://packages.sury.org/php/apt.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/sury-php.gpg] https://packages.sury.org/php/ bookworm main" \
+        > /etc/apt/sources.list.d/php-packages.sury.org.list \
     && apt-get update \
     && apt-get install -y \
         php8.3-bcmath \
